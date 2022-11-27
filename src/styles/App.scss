@@ -1,0 +1,36 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  margin: 0 10% 0 10%;
+  color: black;
+  
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 2px saddlebrown;
+
+    h2{
+      padding: 20px 20px 20px 0;
+      border-right: 2px solid #eee;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 300px;
+      margin-left: 20px;
+
+      a{
+        color: black;
+        font-size: 18px;
+        text-decoration: none;
+      }
+    }
+  }
+}

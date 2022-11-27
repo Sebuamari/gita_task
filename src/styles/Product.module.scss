@@ -1,0 +1,15 @@
+.products {
+    display: flex;
+    flex-direction: column;
+
+    table {
+        tr{
+            border: 2px solid black;
+            height: 40px;
+
+            &:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+        }
+    }
+}
