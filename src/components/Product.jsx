@@ -11,27 +11,27 @@ const Product = ({
 }) => {
   return (
     <tr className={ProductStyle.product}>
-        <td className="product_name">
+        <td className={ProductStyle.product_name}>
             {ProductName}
         </td>      
-        <td className="product_number">
+        <td className={ProductStyle.product_number}>
             {ProductNumber}
         </td>    
-        <td className="product_color">
+        <td className={ProductStyle.product_color}>
             {Color}
         </td>    
-        <td className="product_price">
+        <td className={ProductStyle.product_price}>
             {ListPrice}
         </td>    
-        <td className="product_modified_date">
+        <td className={ProductStyle.product_modified_date}>
             {ModifiedDate}
         </td>     
-        <td className="product_actions">
+        <td className={ProductStyle.product_actions}>
             <Link> 
-                <button>Edit</button>
+                <button className={ProductStyle.product_actions_edit}>Edit</button>
             </Link>
             <Link> 
-                <button>Delete</button>
+                <button className={ProductStyle.product_actions_delete}>Delete</button>
             </Link>
         </td>    
     </tr>

@@ -1,15 +1,93 @@
 .products {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    margin: 0 10% 0 10%;
 
-    table {
-        tr{
-            border: 2px solid black;
-            height: 40px;
+    .filter {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
 
-            &:nth-child(even) {
-                background-color: #f2f2f2;
+        button {
+            padding: 5px;
+            border: 2px solid gray;
+            border-radius: 8px;
+
+            &:hover{
+                transform: scale(1.1);
+                cursor: pointer;
             }
+        }
+    }
+
+    .table_container {
+        max-height: 800px;
+        overflow: scroll;
+
+        table {
+            //border: 2px solid black;
+            width: 100%;
+            border-collapse: collapse;
+    
+            th {
+                padding: 5px;
+                text-align: start;
+                border: 2px solid gray;
+            }
+    
+            tr{
+                height: 40px;
+                border: 2px solid gray;
+    
+                &:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
+                
+                td{
+                    padding: 5px;
+                    vertical-align: middle;
+                    border: 2px solid gray;
+                }
+    
+                .product_actions{
+    
+                    &_edit,
+                    &_delete{
+                        width: 50px;
+                        height: 30px;
+                        color: white;
+                        background-color: gray;
+                        border: 0px;
+                        border-radius: 8px;
+                        margin-left: 10px;
+    
+                        &:hover{
+                            cursor: pointer;
+                            transform: scale(1.1);
+                        }
+                    }
+    
+                    &_delete{
+                        background: red;
+                    }
+                }
+            }
+        }
+    }
+
+    .new_product_button {
+        border: 0;
+        width: 150px;
+        height: 40px;
+        border-radius: 8px;
+        color: white;
+        background-color: skyblue;
+
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.1);
         }
     }
 }

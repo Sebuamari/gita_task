@@ -1,11 +1,10 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import '../styles/App.scss';
 import Header from '../components/Header';
 import Products from "./Products";
 import Customers from "./Customers";
 import Orders from "./Orders";
 import Reports from "./Reports";
-import Product from '../components/Product';
 
 function App() {
   return (
@@ -18,6 +17,9 @@ function App() {
           <Route exact path="/Orders" element={<Orders />} />
           <Route exact path="/Reports" element={<Reports />} />
         </Routes>
+        <footer>
+          &copy; 2022 - Online Shop Admin - <Link href="#">Privacy</Link>
+        </footer>
       </Router>
     </div>
   );

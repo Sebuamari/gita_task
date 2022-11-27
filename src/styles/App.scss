@@ -1,10 +1,14 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .App {
-  margin: 0 10% 0 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
   color: black;
   
   .header {
@@ -12,7 +16,8 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    box-shadow: 2px saddlebrown;
+    padding: 10px 10% 10px 10%;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 
     h2{
       padding: 20px 20px 20px 0;
@@ -29,6 +34,38 @@
       a{
         color: black;
         font-size: 18px;
+        text-decoration: none;
+      }
+    }
+  }
+
+  footer{
+    box-shadow: rgba(0, 0, 0, 0.18) 2px 0px 4px;
+    padding: 30px 10% 30px 10%;
+
+    a{
+      text-decoration: none;
+    }
+  }
+
+  .coming-soon-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 60%;
+    padding: 10px 10% 10px 10%;
+
+    .main-container{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      img{
+        width: 400px;
+        height: 300px;
+      }
+
+      a{
         text-decoration: none;
       }
     }
