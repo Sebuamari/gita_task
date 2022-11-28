@@ -5,6 +5,9 @@ import Products from "./Products";
 import Customers from "./Customers";
 import Orders from "./Orders";
 import Reports from "./Reports";
+import Edit from "./Edit";
+import Delete from "./Delete";
+import CreateNewProduct from "./CreateNewProduct";
 
 function App() {
   return (
@@ -12,10 +15,13 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route exact path="/" element={<Products />} />
+          <Route exact path="/App" element={<Products />} />
           <Route exact path="/Customers" element={<Customers />} />
           <Route exact path="/Orders" element={<Orders />} />
           <Route exact path="/Reports" element={<Reports />} />
+          <Route exact path="/Edit" element={<Edit />} />
+          <Route exact path="/Delete" element={<Delete />} />
+          <Route exact path="/CreateNewProduct" element={<CreateNewProduct />} />
         </Routes>
         <footer>
           &copy; 2022 - Online Shop Admin - <Link href="#">Privacy</Link>

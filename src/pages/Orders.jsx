@@ -8,7 +8,7 @@ const Orders = () => {
             <h1>Orders Page</h1>
             <div className="main-container">
                 <img src={sign} alt="coming soon" />
-                <Link to="/">Back to Products</Link>
+                <Link to="/App">Back to Products</Link>
             </div>
         </div>
     );

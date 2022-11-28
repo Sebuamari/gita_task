@@ -7,7 +7,7 @@ const Header = () => {
         <header className="header">
             <h2>Online Shop Admin</h2>
             <nav>
-                <Link to="/">Products</Link>
+                <Link to="/App">Products</Link>
                 <Link to="/Customers">Customers</Link>
                 <Link to="/Orders">Orders</Link>
                 <Link to="/Reports">Reports</Link>
