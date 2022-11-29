@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import ProductStyle from "../styles/Product.module.scss"
 
 const Product = ({
+  ProductId,
+  ProductCategoryId,
+  ProductModelId,
   ProductName,
   ProductNumber,
   Color,
@@ -24,6 +27,9 @@ const Product = ({
         <Link
           to="/Edit"
           state={{
+            ProductId: ProductId,
+            ProductCategoryId: ProductCategoryId,
+            ProductModelId: ProductModelId,
             ProductName: ProductName,
             ProductNumber: ProductNumber,
             Color: Color,
@@ -40,6 +46,9 @@ const Product = ({
         <Link
           to="/Delete"
           state={{
+            ProductId: ProductId,
+            ProductCategoryId: ProductCategoryId,
+            ProductModelId: ProductModelId,
             ProductName: ProductName,
             ProductNumber: ProductNumber,
             Color: Color,

@@ -5,6 +5,9 @@ import ProductStyle from "../styles/Product.module.scss"
 const Edit = () => {
   const location = useLocation();
   const {
+    ProductId,
+    ProductCategoryId,
+    ProductModelId,
     ProductName,
     ProductNumber,
     Color,

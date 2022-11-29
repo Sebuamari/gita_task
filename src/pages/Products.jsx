@@ -75,10 +75,13 @@ const Products = () => {
               <th>Modified Date</th>
               <th>Actions</th>
             </tr>
-            {ProductsArray.map((product, id) => {
+            {ProductsArray.map((product) => {
               return (
                 <Product
-                  key={id}
+                  key={product.ProductId}
+                  ProductId={product.ProductId}
+                  ProductCategoryId={product.ProductCategoryId}
+                  ProductModelId={product.ProductModelId}
                   ProductName={product.ProductName}
                   ProductNumber={product.ProductNumber}
                   Color={product.Color}
