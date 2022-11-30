@@ -1,6 +1,9 @@
-import { useState } from "react";
+import React, { createContext, useContext, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
-const ProductsArray = [
+const DataContext = createContext();
+
+let ProductsArray = [
     {
         ProductId: 1,
         ProductCategoryId: 1,
@@ -12,8 +15,8 @@ const ProductsArray = [
         ListPrice: "900.00",
         Size: 58,
         Weight: 1016.04,
-        SellStartDate: new Date(2022, 11, 29).toDateString(),
-        ModifiedDate: new Date(2012, 4, 7).toDateString()
+        SellStartDate: new Date(2022, 11, 29).toISOString().split('T')[0],
+        ModifiedDate: new Date(2012, 4, 7).toISOString().split('T')[0]
     }, 
     {
         ProductId: 2,
@@ -26,8 +29,8 @@ const ProductsArray = [
         ListPrice: "230.80",
         Size: 58,
         Weight: 1016.04,
-        SellStartDate: new Date(2022, 11, 29).toDateString(),
-        ModifiedDate: new Date(2022, 12, 21).toDateString()
+        SellStartDate: new Date(2022, 11, 29).toISOString().split('T')[0],
+        ModifiedDate: new Date(2022, 12, 21).toISOString().split('T')[0]
     }, 
     {
         ProductId: 3,
@@ -40,8 +43,8 @@ const ProductsArray = [
         ListPrice: "906.40",
         Size: 58,
         Weight: 1016.04,
-        SellStartDate: new Date(2022, 11, 29).toDateString(),
-        ModifiedDate: new Date(2022, 11, 27).toDateString()
+        SellStartDate: new Date(2022, 11, 29).toISOString().split('T')[0],
+        ModifiedDate: new Date(2022, 11, 27).toISOString().split('T')[0]
     }, 
     {
         ProductId: 4,
@@ -54,8 +57,8 @@ const ProductsArray = [
         ListPrice: "927.00",
         Size: 58,
         Weight: 1016.04,
-        SellStartDate: new Date(2022, 11, 29).toDateString(),
-        ModifiedDate: new Date(2022, 10, 7).toDateString()
+        SellStartDate: new Date(2022, 11, 29).toISOString().split('T')[0],
+        ModifiedDate: new Date(2022, 10, 7).toISOString().split('T')[0]
     }, 
     {
         ProductId: 5,
@@ -68,8 +71,8 @@ const ProductsArray = [
         ListPrice: "230.80",
         Size: 58,
         Weight: 1016.04,
-        SellStartDate: new Date(2022, 11, 29).toDateString(),
-        ModifiedDate: new Date(2022, 12, 21).toDateString()
+        SellStartDate: new Date(2022, 11, 29).toISOString().split('T')[0],
+        ModifiedDate: new Date(2022, 12, 21).toISOString().split('T')[0]
     }, 
     {
         ProductId: 6,
@@ -82,8 +85,8 @@ const ProductsArray = [
         ListPrice: "1430.50",
         Size: 58,
         Weight: 1016.04,
-        SellStartDate: new Date(2022, 11, 29).toDateString(),
-        ModifiedDate: new Date(2021, 2, 7).toDateString()
+        SellStartDate: new Date(2022, 11, 29).toISOString().split('T')[0],
+        ModifiedDate: new Date(2021, 2, 7).toISOString().split('T')[0]
     }, 
     {
         ProductId: 7,
@@ -96,8 +99,8 @@ const ProductsArray = [
         ListPrice: "700.00",
         Size: 58,
         Weight: 1016.04,
-        SellStartDate: new Date(2022, 11, 29).toDateString(),
-        ModifiedDate: new Date(2022, 8, 20).toDateString()
+        SellStartDate: new Date(2022, 11, 29).toISOString().split('T')[0],
+        ModifiedDate: new Date(2022, 8, 20).toISOString().split('T')[0]
     }, 
     {
         ProductId: 8,
@@ -110,8 +113,8 @@ const ProductsArray = [
         ListPrice: "2400.10",
         Size: 58,
         Weight: 1016.04,
-        SellStartDate: new Date(2022, 11, 29).toDateString(),
-        ModifiedDate: new Date(2022, 1, 7).toDateString()
+        SellStartDate: new Date(2022, 11, 29).toISOString().split('T')[0],
+        ModifiedDate: new Date(2022, 1, 7).toISOString().split('T')[0]
     }, 
     {
         ProductId: 9,
@@ -124,9 +127,49 @@ const ProductsArray = [
         ListPrice: "900.00",
         Size: 58,
         Weight: 1016.04,
-        SellStartDate: new Date(2022, 11, 29).toDateString(),
-        ModifiedDate: new Date(2012, 4, 7).toDateString()
+        SellStartDate: new Date(2022, 11, 29).toISOString().split('T')[0],
+        ModifiedDate: new Date(2012, 4, 7).toISOString().split('T')[0]
     }, 
 ];
 
-export default ProductsArray;
+export const DataProvider = ({ children }) => {  
+    const navigate = useNavigate();
+
+    const addNewProduct = (newProduct) => {
+        ProductsArray[ProductsArray.length+1] = {
+          ProductId: ProductsArray[ProductsArray.length-1].ProductId+1,
+          ModifiedDate: new Date().toISOString().split('T')[0],
+          ...newProduct
+        };
+    }
+
+    const deleteProduct = (id) => {
+        ProductsArray = ProductsArray.filter( (product) => {
+            return product.ProductId !== id
+        })
+    }
+
+    const changeProduct = (id, data, value) => {
+        ProductsArray.find( (product) => 
+            product.ProductId === id
+        )[data] = value;
+    }
+
+    useEffect(() => {
+        console.log(ProductsArray)
+    },[])
+
+    return (
+        <DataContext.Provider 
+          value={{
+            ProductsArray, navigate, addNewProduct, changeProduct, deleteProduct
+          }}
+        >
+            {children}
+        </DataContext.Provider>
+    )
+}
+
+export const useDataContext = () => {
+    return useContext(DataContext)
+}

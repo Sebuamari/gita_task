@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDataContext } from "../Context/DataContext";
 import Product from "../components/Product";
-import ProductsArray from "../Data";
 import ProductStyle from "../styles/Product.module.scss"
 
 const Products = () => {
+    const { ProductsArray } = useDataContext();
     const [filterActive, setFilterActive] = useState(false);
     const [filterName, setFilterName] = useState("");
     const [filterMinPrice, setFilterMinPrice] = useState("");
     const [filterMaxPrice, setFilterMaxPrice] = useState("");
-    const [products, setProducts] = useState([]);
 
     const filter = (name, minPrice, maxPrice) => {
         // setProducts(ProductsArray.filter( (product) => {
@@ -67,36 +67,38 @@ const Products = () => {
         )}
         <div className={ProductStyle.table_container}>
           <table>
-            <tr>
-              <th>Product Name</th>
-              <th>Product Number</th>
-              <th>Color</th>
-              <th>List Price</th>
-              <th>Modified Date</th>
-              <th>Actions</th>
-            </tr>
-            {ProductsArray.map((product) => {
-              return (
-                <Product
-                  key={product.ProductId}
-                  ProductId={product.ProductId}
-                  ProductCategoryId={product.ProductCategoryId}
-                  ProductModelId={product.ProductModelId}
-                  ProductName={product.ProductName}
-                  ProductNumber={product.ProductNumber}
-                  Color={product.Color}
-                  StandartCost={product.StandartCost}
-                  ListPrice={product.ListPrice}
-                  Size={product.Size}
-                  Weight={product.Weight}
-                  SellStartDate={product.SellStartDate}
-                  ModifiedDate={product.ModifiedDate}
-                />
-              );
-            })}
+            <tbody>
+              <tr>
+                <th>Product Name</th>
+                <th>Product Number</th>
+                <th>Color</th>
+                <th>List Price</th>
+                <th>Modified Date</th>
+                <th>Actions</th>
+              </tr>
+              {ProductsArray.map((product) => {
+                return (
+                  <Product
+                    key={product.ProductId}
+                    ProductId={product.ProductId}
+                    ProductCategoryId={product.ProductCategoryId}
+                    ProductModelId={product.ProductModelId}
+                    ProductName={product.ProductName}
+                    ProductNumber={product.ProductNumber}
+                    Color={product.Color}
+                    StandartCost={product.StandartCost}
+                    ListPrice={product.ListPrice}
+                    Size={product.Size}
+                    Weight={product.Weight}
+                    SellStartDate={product.SellStartDate}
+                    ModifiedDate={product.ModifiedDate}
+                  />
+                );
+              })}
+            </tbody>
           </table>
         </div>
-        <Link to="/CreateNewProduct">
+        <Link to="/CreateNewProduct" >
           <button className={ProductStyle.new_product_button}>
             Create New Product
           </button>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import ProductStyle from "../styles/Product.module.scss"
+import { useDataContext } from "../Context/DataContext";
 
 const Delete = () => {
   const location = useLocation();
@@ -18,6 +18,9 @@ const Delete = () => {
     SellStartDate,
     ModifiedDate,
   } = location.state;
+
+  const { navigate, deleteProduct } = useDataContext();
+
 
   return (
     <div className="delete-container">
@@ -76,9 +79,10 @@ const Delete = () => {
         </div>
       </div>
       <div className="delete-actions">
-        <Link to="/App">
-          <button className="delete-actions-delete">Delete the Product!</button>
-        </Link>
+        <button className="delete-actions-delete" onClick={() => {
+            deleteProduct(ProductId);
+            navigate("/App")
+          }}>Delete the Product!</button>
         <Link to="/App">
           <button className="delete-actions-back">Cancel - Back to List</button>
         </Link>

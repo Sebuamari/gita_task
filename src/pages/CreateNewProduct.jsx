@@ -1,83 +1,110 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import ProductStyle from "../styles/Product.module.scss"
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useDataContext } from "../Context/DataContext";
 
 const CreateNewProduct = () => {
-  const location = useLocation();
-  const {
-    ProductName,
-    ProductNumber,
-    Color,
-    StandartCost,
-    ListPrice,
-    Size,
-    Weight,
-    SellStartDate,
-    ModifiedDate,
-  } = location.state;
+  const [ProductName, setProductName] = useState("");
+  const [ProductNumber, setProductNumber] = useState("");
+  const [Color, setColor] = useState("");
+  const [StandartCost, setStandartCost] = useState("");
+  const [ListPrice, setListPrice] = useState("");
+  const [Size, setSize] = useState("");
+  const [Weight, setWeight] = useState("");
+  const [SellStartDate, setSellStartDate] = useState("");
+  const [NameValid, setNameValid] = useState();
+  const [NumberValid, setNumberValid] = useState();
+  const [PriceValid, setPriceValid] = useState();
+
+  const { navigate, addNewProduct } = useDataContext();
+
+  useEffect( () => {
+    ProductName.length > 0 ? setNameValid(true) : setNameValid(false);
+  }, [ProductName])
+
+  useEffect( () => {
+    ProductNumber.length > 0 ? setNumberValid(true) : setNumberValid(false);
+  }, [ProductNumber])
+
+  useEffect( () => {
+    ListPrice > 0.1 && ListPrice < 100 ? setPriceValid(true) : setPriceValid(false);
+  }, [ListPrice])
+
+  const ProductData = {
+    ProductName: ProductName ,
+    ProductNumber: ProductNumber,
+    Color: Color,
+    StandartCost: StandartCost,
+    ListPrice: ListPrice,
+    Size: Size,
+    Weight: Weight,
+    SellStartDate: SellStartDate
+  }
 
   return (
     <div className="edit-container">
-      <h1>Edit Product</h1>
+      <h1>Create a new Product</h1>
       <div className="product-data-container">
         <div className="product-data">
           <div className="product-data-value">
             <p>Name:</p>
-            <input type="text" value={ProductName} />
+            <input type="text" onChange={(e) => setProductName(e.target.value)}/>
           </div>
-          <p className="alert">The Name field is required</p>
+          <p className="alert">{!NameValid ? "The Name field is required" : ""}</p>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>Product Number:</p>
-            <input type="text" value={ProductNumber} />
+            <input type="text" onChange={(e) => setProductNumber(e.target.value)}/>
           </div>
-          <p className="alert">The Product Number field is required</p>
+          <p className="alert">{!NumberValid ? "The Product Number field is required" : ""}</p>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>Color:</p>
-            <input type="text" value={Color} />
+            <input type="text" onChange={(e) => setColor(e.target.value)}/>
           </div>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>Standart Cost:</p>
-            <input type="number" value={StandartCost} />
+            <input type="number" onChange={(e) => setStandartCost(e.target.value)}/>
           </div>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>List Price:</p>
-            <input type="number" value={ListPrice} />
+            <input type="number" onChange={(e) => setListPrice(e.target.value)}/>
           </div>
-          <p className="alert">The field List Price must be between 0.1 and 1000</p>
+          <p className="alert">{!PriceValid ? "The field List Price must be between 0.1 and 1000" : ""}</p>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>Size:</p>
-            <input type="number" value={Size} />
+            <input type="number" onChange={(e) => setSize(e.target.value)}/>
           </div>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>Weight:</p>
-            <input type="number" value={Weight} />
+            <input type="number" onChange={(e) => setWeight(e.target.value)}/>
           </div>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>Sell Start Date:</p>
-            <input type="date" value={SellStartDate} />
+            <input type="date"  onChange={(e) => setSellStartDate(e.target.value)}/>
           </div>
         </div>
       </div>
       <div className="edit-actions">
-        <button className="edit-actions-save">Save</button>
+        <button className="edit-actions-save" onClick={() => {
+          addNewProduct(ProductData);
+          navigate("/App");
+        }}>Save</button>
         <Link to="/App">
           <button className="edit-actions-back">Back to List</button>
         </Link>
-        <Link to="/Delete">
+        <Link to="/App">
           <button className="edit-actions-delete">Delete</button>
         </Link>
       </div>
