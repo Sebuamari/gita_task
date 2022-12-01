@@ -49,67 +49,127 @@ const Edit = () => {
         <div className="product-data">
           <div className="product-data-value">
             <p>Name:</p>
-            <input id="ProductName" type="text" value={updatedProductName} onChange={(e) => {
-              setUpdatedProductName(e.target.value)
-              e.target.value.length > 0 ? setNameValid(true) : setNameValid(false)}
-            }/>
+            <input
+              id="ProductName"
+              type="text"
+              value={updatedProductName}
+              onChange={(e) => {
+                setUpdatedProductName(e.target.value);
+                e.target.value.length > 0
+                  ? setNameValid(true)
+                  : setNameValid(false);
+              }}
+            />
           </div>
-          <p className="alert">{!NameValid ? "The Name field is required" : ""}</p>
+          <p className="alert">
+            {!NameValid ? "The Name field is required" : ""}
+          </p>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>Product Number:</p>
-            <input id="ProductNumber" type="text" value={updatedProductNumber} onChange={(e) => {
-              setUpdatedProductNumber(e.target.value);
-              e.target.value.length > 0 ? setNumberValid(true) : setNumberValid(false)}
-            }/>
+            <input
+              id="ProductNumber"
+              type="text"
+              value={updatedProductNumber}
+              onChange={(e) => {
+                setUpdatedProductNumber(e.target.value);
+                e.target.value.length > 0
+                  ? setNumberValid(true)
+                  : setNumberValid(false);
+              }}
+            />
           </div>
-          <p className="alert">{!NumberValid ? "The Product Number field is required" : ""}</p>
+          <p className="alert">
+            {!NumberValid ? "The Product Number field is required" : ""}
+          </p>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>Color:</p>
-            <input id="Color" type="text" value={updatedColor} onChange={(e) => setUpdatedColor(e.target.value)}/>
+            <input
+              id="Color"
+              type="text"
+              value={updatedColor}
+              onChange={(e) => setUpdatedColor(e.target.value)}
+            />
           </div>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>Standart Cost:</p>
-            <input id="StandartCost" type="number" value={updatedStandartCost} onChange={(e) => setUpdatedStandartCost(e.target.value)}/>
+            <input
+              id="StandartCost"
+              type="number"
+              value={updatedStandartCost}
+              onChange={(e) => setUpdatedStandartCost(e.target.value)}
+            />
           </div>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>List Price:</p>
-            <input id="ListPrice" type="number" value={updatedListPrice} onChange={(e) => {
-              setUpdatedListPrice(e.target.value);
-              e.target.value > 0.1 && e.target.value < 1000 ? setPriceValid(true) : setPriceValid(false)}
-            }/>
+            <input
+              id="ListPrice"
+              type="number"
+              value={updatedListPrice}
+              onChange={(e) => {
+                setUpdatedListPrice(e.target.value);
+                e.target.value > 0.1 && e.target.value < 1000
+                  ? setPriceValid(true)
+                  : setPriceValid(false);
+              }}
+            />
           </div>
-          <p className="alert">{!PriceValid ? "The field List Price must be between 0.1 and 1000" : ""}</p>
+          <p className="alert">
+            {!PriceValid
+              ? "The field List Price must be between 0.1 and 1000"
+              : ""}
+          </p>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>Size:</p>
-            <input id="Size" type="number" value={updatedSize} onChange={(e) => setUpdatedSize(e.target.value)}/>
+            <input
+              id="Size"
+              type="number"
+              value={updatedSize}
+              onChange={(e) => setUpdatedSize(e.target.value)}
+            />
           </div>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>Weight:</p>
-            <input id="Weight" type="number" value={updatedWeight} onChange={(e) => setUpdatedWeight(e.target.value)}/>
+            <input
+              id="Weight"
+              type="number"
+              value={updatedWeight}
+              onChange={(e) => setUpdatedWeight(e.target.value)}
+            />
           </div>
         </div>
         <div className="product-data">
           <div className="product-data-value">
             <p>Sell Start Date:</p>
-            <input id="SellStartDate" type="date" value={updatedSellStartDate} onChange={(e) => setUpdatedSellStartDate(e.target.value)}/>
+            <input
+              id="SellStartDate"
+              type="date"
+              value={updatedSellStartDate}
+              onChange={(e) => setUpdatedSellStartDate(e.target.value)}
+            />
           </div>
         </div>
       </div>
       <div className="edit-actions">
-        <button className="edit-actions-save"
-        onClick={() => NameValid && NumberValid && PriceValid ? change() : ""}>Save</button>
+        <button
+          className="edit-actions-save"
+          onClick={() =>
+            NameValid && NumberValid && PriceValid ? change() : ""
+          }
+        >
+          Save
+        </button>
         <Link to="/App">
           <button className="edit-actions-back">Back to List</button>
         </Link>

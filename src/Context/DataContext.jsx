@@ -132,75 +132,67 @@ let ProductsArray = [
     }, 
 ];
 
-export const DataProvider = ({ children }) => {  
-    const navigate = useNavigate();
+export const DataProvider = ({ children }) => {
+  const navigate = useNavigate();
 
-    const addNewProduct = (newProduct) => {
-        ProductsArray[ProductsArray.length+1] = {
-          ProductId: ProductsArray[ProductsArray.length-1].ProductId+1,
-          ModifiedDate: new Date().toISOString().split('T')[0],
-          ...newProduct
-        };
-    }
+  const addNewProduct = (newProduct) => {
+    ProductsArray[ProductsArray.length + 1] = {
+      ProductId: ProductsArray[ProductsArray.length - 1].ProductId + 1,
+      ModifiedDate: new Date().toISOString().split("T")[0],
+      ...newProduct,
+    };
+  };
 
-    const deleteProduct = (id) => {
-        ProductsArray = ProductsArray.filter( (product) => {
-            return product.ProductId !== id
-        })
-    }
+  const deleteProduct = (id) => {
+    ProductsArray = ProductsArray.filter((product) => {
+      return product.ProductId !== id;
+    });
+  };
 
-    const changeProduct = (id, data, value) => {
-        ProductsArray.find( (product) => 
-            product.ProductId === id
-        )[data] = value;
-    }
+  const changeProduct = (id, data, value) => {
+    ProductsArray.find((product) => product.ProductId === id)[data] = value;
+  };
 
-    const filterProducts = (name, minPrice, maxPrice) => {
-        ProductsArray = ProductsArray.filter( (product) => {
-            return name.length > 0 &&
-              minPrice === 0 &&
-              maxPrice === 0
-              ? product.ProductName.includes(name)
-              : name.length === 0 &&
-                minPrice > 0 &&
-                maxPrice === 0
-              ? Number(product.ListPrice) >= minPrice
-              : name.length === 0 &&
-                minPrice === 0 &&
-                maxPrice > 0
-              ? Number(product.ListPrice) <= maxPrice
-              : name.length > 0 &&
-                minPrice > 0 &&
-                maxPrice === 0
-              ? product.ProductName.includes(name) &&
-                Number(product.ListPrice) >= minPrice
-              : name.length > 0 &&
-                minPrice === 0 &&
-                maxPrice > 0
-              ? product.ProductName.includes(name) && 
-                Number(product.ListPrice) <= maxPrice
-              : name.length === 0 &&
-                minPrice > 0 &&
-                maxPrice > 0
-              ? Number(product.ListPrice) >= minPrice &&
-                Number(product.ListPrice) <= maxPrice
-              : Number(product.ListPrice) >= minPrice &&
-                Number(product.ListPrice) <= maxPrice &&
-                product.ProductName.includes(name);
-        });
-        console.log(ProductsArray)
-    }
+  const filterProducts = (name, minPrice, maxPrice) => {
+    ProductsArray = ProductsArray.filter((product) => {
+      return name.length > 0 && minPrice === 0 && maxPrice === 0
+        ? product.ProductName.includes(name)
+        : name.length === 0 && minPrice > 0 && maxPrice === 0
+        ? Number(product.ListPrice) >= minPrice
+        : name.length === 0 && minPrice === 0 && maxPrice > 0
+        ? Number(product.ListPrice) <= maxPrice
+        : name.length > 0 && minPrice > 0 && maxPrice === 0
+        ? product.ProductName.includes(name) &&
+          Number(product.ListPrice) >= minPrice
+        : name.length > 0 && minPrice === 0 && maxPrice > 0
+        ? product.ProductName.includes(name) &&
+          Number(product.ListPrice) <= maxPrice
+        : name.length === 0 && minPrice > 0 && maxPrice > 0
+        ? Number(product.ListPrice) >= minPrice &&
+          Number(product.ListPrice) <= maxPrice
+        : Number(product.ListPrice) >= minPrice &&
+          Number(product.ListPrice) <= maxPrice &&
+          product.ProductName.includes(name);
+    });
+  };
 
-    return (
-        <DataContext.Provider 
-          value={{
-            ProductsArray, navigate, addNewProduct, changeProduct, deleteProduct, filterProducts
-          }}
-        >
-            {children}
-        </DataContext.Provider>
-    )
-}
+  console.log(ProductsArray)
+
+  return (
+    <DataContext.Provider
+      value={{
+        ProductsArray,
+        navigate,
+        addNewProduct,
+        changeProduct,
+        deleteProduct,
+        filterProducts,
+      }}
+    >
+      {children}
+    </DataContext.Provider>
+  );
+};
 
 export const useDataContext = () => {
     return useContext(DataContext)

@@ -5,11 +5,20 @@ import Product from "../components/Product";
 import ProductStyle from "../styles/Product.module.scss"
 
 const Products = () => {
-    const { ProductsArray, filterProducts } = useDataContext();
+    const { navigate, ProductsArray, filterProducts } = useDataContext();
     const [filterActive, setFilterActive] = useState(false);
     const [filterName, setFilterName] = useState("");
     const [filterMinPrice, setFilterMinPrice] = useState("");
     const [filterMaxPrice, setFilterMaxPrice] = useState("");
+
+    const filter = () => {
+      filterProducts(
+        filterName,
+        Number(filterMinPrice),
+        Number(filterMaxPrice)
+      );
+      navigate("/App");
+    }
 
     return (
       <div className={ProductStyle.products}>
@@ -46,11 +55,7 @@ const Products = () => {
                   filterName.length > 0 ||
                   filterMinPrice.length > 0 ||
                   filterMaxPrice > 0
-                    ? filterProducts(
-                        filterName,
-                        Number(filterMinPrice),
-                        Number(filterMaxPrice)
-                      )
+                    ? filter()
                     : ""
                 }
               >

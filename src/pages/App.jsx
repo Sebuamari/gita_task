@@ -23,7 +23,11 @@ function App() {
             <Route exact path="/Reports" element={<Reports />} />
             <Route exact path="/Edit" element={<Edit />} />
             <Route exact path="/Delete" element={<Delete />} />
-            <Route exact path="/CreateNewProduct" element={<CreateNewProduct />} />
+            <Route
+              exact
+              path="/CreateNewProduct"
+              element={<CreateNewProduct />}
+            />
           </Routes>
         </DataProvider>
         <footer>
