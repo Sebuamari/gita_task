@@ -5,23 +5,11 @@ import Product from "../components/Product";
 import ProductStyle from "../styles/Product.module.scss"
 
 const Products = () => {
-    const { ProductsArray } = useDataContext();
+    const { ProductsArray, filterProducts } = useDataContext();
     const [filterActive, setFilterActive] = useState(false);
     const [filterName, setFilterName] = useState("");
     const [filterMinPrice, setFilterMinPrice] = useState("");
     const [filterMaxPrice, setFilterMaxPrice] = useState("");
-
-    const filter = (name, minPrice, maxPrice) => {
-        // setProducts(ProductsArray.filter( (product) => {
-        //     Number(product.ListPrice) === Number(minPrice)
-        //     //Number(product.ListPrice) < Number(filterMaxPrice);
-        //     // product.ProductName.match(filterName)
-        //     // filterName.length > 0 ? 
-        //     // product.ProductName.includes(filterName) &&
-        //     // filterMinPrice !== undefined ? 
-        // }))
-        //console.log(typeof Number(filterMinPrice))
-    }
 
     return (
       <div className={ProductStyle.products}>
@@ -55,7 +43,15 @@ const Products = () => {
               <button
                 className={ProductStyle.apply_button}
                 onClick={() =>
-                  filter(filterName, filterMinPrice, filterMaxPrice)
+                  filterName.length > 0 ||
+                  filterMinPrice.length > 0 ||
+                  filterMaxPrice > 0
+                    ? filterProducts(
+                        filterName,
+                        Number(filterMinPrice),
+                        Number(filterMaxPrice)
+                      )
+                    : ""
                 }
               >
                 Apply
@@ -98,7 +94,7 @@ const Products = () => {
             </tbody>
           </table>
         </div>
-        <Link to="/CreateNewProduct" >
+        <Link to="/CreateNewProduct">
           <button className={ProductStyle.new_product_button}>
             Create New Product
           </button>

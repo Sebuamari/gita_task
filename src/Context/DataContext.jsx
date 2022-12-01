@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect } from "react";
+import React, { createContext, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const DataContext = createContext();
@@ -155,14 +155,46 @@ export const DataProvider = ({ children }) => {
         )[data] = value;
     }
 
-    useEffect(() => {
+    const filterProducts = (name, minPrice, maxPrice) => {
+        ProductsArray = ProductsArray.filter( (product) => {
+            return name.length > 0 &&
+              minPrice === 0 &&
+              maxPrice === 0
+              ? product.ProductName.includes(name)
+              : name.length === 0 &&
+                minPrice > 0 &&
+                maxPrice === 0
+              ? Number(product.ListPrice) >= minPrice
+              : name.length === 0 &&
+                minPrice === 0 &&
+                maxPrice > 0
+              ? Number(product.ListPrice) <= maxPrice
+              : name.length > 0 &&
+                minPrice > 0 &&
+                maxPrice === 0
+              ? product.ProductName.includes(name) &&
+                Number(product.ListPrice) >= minPrice
+              : name.length > 0 &&
+                minPrice === 0 &&
+                maxPrice > 0
+              ? product.ProductName.includes(name) && 
+                Number(product.ListPrice) <= maxPrice
+              : name.length === 0 &&
+                minPrice > 0 &&
+                maxPrice > 0
+              ? Number(product.ListPrice) >= minPrice &&
+                Number(product.ListPrice) <= maxPrice
+              : Number(product.ListPrice) >= minPrice &&
+                Number(product.ListPrice) <= maxPrice &&
+                product.ProductName.includes(name);
+        });
         console.log(ProductsArray)
-    },[])
+    }
 
     return (
         <DataContext.Provider 
           value={{
-            ProductsArray, navigate, addNewProduct, changeProduct, deleteProduct
+            ProductsArray, navigate, addNewProduct, changeProduct, deleteProduct, filterProducts
           }}
         >
             {children}
