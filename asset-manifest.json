@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/gita_task/static/css/main.55fa0534.css",
+    "main.js": "/gita_task/static/js/main.b5b7803b.js",
+    "static/media/coming-soon.jpg": "/gita_task/static/media/coming-soon.284f90f32cd376b6d63f.jpg",
+    "index.html": "/gita_task/index.html",
+    "main.55fa0534.css.map": "/gita_task/static/css/main.55fa0534.css.map",
+    "main.b5b7803b.js.map": "/gita_task/static/js/main.b5b7803b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.55fa0534.css",
+    "static/js/main.b5b7803b.js"
+  ]
+}
